@@ -1,0 +1,68 @@
+group 'com.gits'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    dependencies {
+        classpath group: 'de.dynamicfiles.projects.gradle.plugins', name: 'javafx-gradle-plugin', version: '8.8.2'
+        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.3'
+
+    }
+    repositories {
+        mavenLocal()
+        mavenCentral()
+
+    }
+}
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'com.google.protobuf'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+apply plugin: 'javafx-gradle-plugin'
+
+sourceCompatibility = 1.8
+
+
+dependencies {
+    compile 'io.grpc:grpc-netty:1.10.0'
+    compile 'io.grpc:grpc-protobuf:1.10.0'
+    compile 'io.grpc:grpc-stub:1.10.0'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+jfx {
+    mainClass = 'com.gits.chat.Main'
+}
+
+protobuf {
+    protoc {
+        // The version of protoc must match protobuf-java. If you don't depend on
+        // protobuf-java directly, you will be transitively depending on the
+        // protobuf-java version that grpc depends on.
+        artifact = "com.google.protobuf:protoc:3.5.1-1"
+    }
+    plugins {
+        grpc {
+            artifact = "io.grpc:protoc-gen-grpc-java:1.10.0"
+        }
+    }
+    generateProtoTasks {
+        all()*.plugins {
+            grpc {}
+        }
+    }
+
+    generatedFilesBaseDir = "$projectDir/src/generated"
+
+    idea {
+        module {
+            sourceDirs += file("${projectDir}/src/generated/main/java");
+            sourceDirs += file("${projectDir}/src/generated/main/grpc");
+        }
+    }
+
+}

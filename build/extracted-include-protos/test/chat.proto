@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "com.gits.ChatService.grpc";
+
+message ChatMessage {
+    string user = 1;
+    string message = 2;
+}
+
+service ChatService {
+    rpc SendMessage (stream ChatMessage) returns (stream ChatMessage);
+}
+
+

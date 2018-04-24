@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane alignment="center" hgap="10" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="500.0" style="-fx-min-height: 800; -fx-pref-height: 800;" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gits.chat.Controller">
+   <children>
+      <ScrollPane fx:id="chatScrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="350.0" prefWidth="200.0" vbarPolicy="AS_NEEDED" GridPane.rowIndex="1">
+         <content>
+            <TextFlow fx:id="chatFlow" prefHeight="200.0" prefWidth="200.0" />
+
+         </content>
+      </ScrollPane>
+      <TextField fx:id="chatText" onAction="#postMessage" GridPane.rowIndex="2" />
+      <Pane prefHeight="30.0" prefWidth="200.0">
+         <children>
+            <TextField fx:id="userName" layoutX="84.0" layoutY="4.0" prefHeight="25.0" prefWidth="117.0" promptText="enter user name" />
+            <TextField fx:id="userName1" editable="false" layoutY="4.0" prefHeight="25.0" prefWidth="81.0" text="UserName" />
+         </children>
+      </Pane>
+
+   </children>
+   <columnConstraints>
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
+      <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
+   </rowConstraints>
+</GridPane>
